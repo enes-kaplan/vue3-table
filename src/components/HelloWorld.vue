@@ -40,7 +40,7 @@ export default {
       {
         name: 'surname',
         text: 'Surname',
-        dataType: 'text',
+        dataType: 'select',
         align: 'left',
         isFilterable: true,
         isVisible: true

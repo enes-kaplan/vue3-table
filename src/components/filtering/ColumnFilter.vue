@@ -2,6 +2,7 @@
   <th :class="{ 'bg-gray-300': !column.isFilterable }">
     <template v-if="column.isFilterable">
       <text-filter v-if="column.dataType === 'text'" :column="column" @input="emitInput" />
+      <select-filter v-else-if="column.dataType === 'select'" :column="column" :data="data" @input="emitInput" />
     </template>
     <template v-else>
       &nbsp;
@@ -11,6 +12,7 @@
 
 <script>
 import TextFilter from './TextFilter.vue'
+import SelectFilter from './SelectFilter.vue'
 
 export default {
   props: {
@@ -32,7 +34,8 @@ export default {
     return { emitInput }
   },
   components: {
-    TextFilter
+    TextFilter,
+    SelectFilter
   }
 }
 </script>

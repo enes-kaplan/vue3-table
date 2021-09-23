@@ -13,6 +13,8 @@ export function applyFilter(columns, data, locale) {
           || cellValue.trim().toLocaleUpperCase(locale).includes(
             filterValue.trim().toLocaleUpperCase(locale)
           )
+        } else if (dataType === 'select') {
+          return cellValue === filterValue
         }
 
         return []
