@@ -66,10 +66,10 @@ export default {
   },
   setup(props) {
     const filteredData = computed(() => {
-      return applyFilter(props.columns, [...props.data], props.locale, 0, 0, 0, 0)
+      return applyFilter(props.columns, [...props.data], props.locale)
     })
     const visibleColumns = computed(() => {
-      return props.columns.filter(f => f.isVisible === true)
+      return props.columns.filter(f => f.isVisible !== false)
     })
 
     const tableClass = computed(() => {
@@ -94,8 +94,10 @@ export default {
     }
 
     function applyColumnFilter(filterOptions) {
+      console.log('BEFORE', props.columns)
       const filteredColumn = props.columns.find(f => f.name === filterOptions.column.name)
       filteredColumn.filterValue = filterOptions.value
+      console.log('AFTER', props.columns)
     }
 
     return { filteredData, visibleColumns, tableClass, columnClasses, applyColumnFilter }

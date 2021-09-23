@@ -4,6 +4,7 @@
       {{ option.text }}
     </option>
   </select>
+  <!-- TODO: Option to clear selected value -->
 </template>
 
 <script>

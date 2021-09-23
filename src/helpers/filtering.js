@@ -1,6 +1,6 @@
 export function applyFilter(columns, data, locale) {
   columns.forEach(col => {
-    if (col.filterValue && col.filterValue.length > 0) {
+    if (col.isFilterable && col.filterValue !== null && col.filterValue !== undefined) {
       data = data.filter(d => {
         const cellValue = d[col.name]
         const filterValue = col.filterValue
@@ -13,7 +13,7 @@ export function applyFilter(columns, data, locale) {
           || cellValue.trim().toLocaleUpperCase(locale).includes(
             filterValue.trim().toLocaleUpperCase(locale)
           )
-        } else if (dataType === 'select') {
+        } else if (dataType === 'select' || dataType === 'boolean') {
           return cellValue === filterValue
         }
 
