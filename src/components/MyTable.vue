@@ -12,12 +12,12 @@
           :key="'filter-' + i + '-' + col.name"
           :column="col"
           :data="data"
-          @input="test"
+          @input="applyColumnFilter"
         />
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, i) in data" :key="'td' + i" class="hover:bg-gray-200">
+      <tr v-for="(row, i) in filteredData" :key="'td' + i" class="hover:bg-gray-200">
         <td
           v-for="(col, j) in visibleColumns"
           :key="'row-' + j + '-' + col.name"
@@ -34,6 +34,7 @@
 
 <script>
 import { computed } from 'vue'
+import { applyFilter } from '../helpers/filtering.js'
 
 import ColumnFilter from './ColumnFilter.vue'
 
@@ -47,6 +48,11 @@ export default {
       type: Array,
       required: true
     },
+    locale: {
+      type: String,
+      default: () => 'en-US',
+      required: false
+    },
     isFilterable: {
       type: Boolean,
       default: () => false,
@@ -59,6 +65,9 @@ export default {
     }
   },
   setup(props) {
+    const filteredData = computed(() => {
+      return applyFilter(props.columns, [...props.data], props.locale, 0, 0, 0, 0)
+    })
     const visibleColumns = computed(() => {
       return props.columns.filter(f => f.isVisible === true)
     })
@@ -84,11 +93,12 @@ export default {
       return classList
     }
 
-    function test(tval) {
-      console.log('My Value Is: ', tval)
+    function applyColumnFilter(filterOptions) {
+      const filteredColumn = props.columns.find(f => f.name === filterOptions.column.name)
+      filteredColumn.filterValue = filterOptions.value
     }
 
-    return { visibleColumns, tableClass, columnClasses }
+    return { filteredData, visibleColumns, tableClass, columnClasses, applyColumnFilter }
   },
   components: {
     ColumnFilter

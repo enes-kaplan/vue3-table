@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col items-center gap-4">
     <div class="w-1/2">
-      <my-table :columns="cols" :data="data" is-filterable striped>
+      <my-table :columns="cols" :data="data" locale="tr" is-filterable
+                striped
+      >
         <template #actions="row">
           <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2" @click="customFunc(row.data)">
             TEST
@@ -29,14 +31,18 @@ export default {
       {
         name: 'name',
         text: 'Name',
+        dataType: 'text',
         align: 'left',
         customClass: 'font-bold italic',
+        isFilterable: true,
         isVisible: true
       },
       {
         name: 'surname',
         text: 'Surname',
+        dataType: 'text',
         align: 'left',
+        isFilterable: true,
         isVisible: true
       },
       {

@@ -22,9 +22,10 @@ export default {
     }
   },
   emits: ['input'],
-  setup(_props, context) {
+  setup(props, context) {
     function emitInput(e) {
-      context.emit('input', e)
+      const emitObject = { column: props.column, value: e.target.value }
+      context.emit('input', emitObject)
     }
     return { emitInput }
   }
