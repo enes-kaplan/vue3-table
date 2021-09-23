@@ -10,16 +10,19 @@ export default {
 			{
 				name: 'id',
 				text: 'ID',
+				align: 'center',
 				isVisible: true
 			},
 			{
 				name: 'name',
 				text: 'Ad',
+				align: 'left',
 				isVisible: true
 			},
 			{
 				name: 'surname',
 				text: 'Soyad',
+				align: 'left',
 				isVisible: true
 			}
 		])

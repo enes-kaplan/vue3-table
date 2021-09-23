@@ -9,7 +9,7 @@
 		</thead>
 		<tbody>
 			<tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200" :class="{ 'bg-gray-100': i % 2 === 1 }">
-				<td v-for="col in visibleColumns" :key="'row-i-' + col.name">
+				<td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
 					{{ row[col.name] }}
 				</td>
 			</tr>
@@ -36,7 +36,19 @@ export default {
 			return props.columns.filter(f => f.isVisible === true)
 		})
 
-		return { visibleColumns }
+		function columnClasses(col) {
+			const classList = []
+			if (col.align === 'left') {
+				classList.push('text-left')
+			} else if (col.align === 'right') {
+				classList.push('text-right')
+			} else {
+				classList.push('text-center')
+			}
+			return classList
+		}
+
+		return { visibleColumns, columnClasses }
 	}
 }
 </script>
