@@ -30,6 +30,7 @@ export default {
         name: 'name',
         text: 'Name',
         align: 'left',
+        customClass: 'font-bold italic',
         isVisible: true
       },
       {

@@ -47,6 +47,9 @@ export default {
       } else {
         classList.push('text-center')
       }
+      if (col.customClass) {
+        classList.push(col.customClass)
+      }
       return classList
     }
 
