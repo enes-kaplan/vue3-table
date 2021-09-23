@@ -1,5 +1,12 @@
 <template>
-  <input class="input-text" @keyup="emitInput">
+  <th :class="{ 'bg-gray-300': !column.isFilterable }">
+    <template v-if="column.isFilterable">
+      <input class="input-text" @keyup="emitInput">
+    </template>
+    <template v-else>
+      &nbsp;
+    </template>
+  </th>
 </template>
 
 <script>
