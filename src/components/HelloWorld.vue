@@ -1,5 +1,19 @@
+<template>
+  <div class="flex flex-col items-center gap-4">
+    <div class="w-1/2">
+      <my-table :columns="cols" :data="data">
+        <template #actions>
+          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2">
+            DEL
+          </button>
+        </template>
+      </my-table>
+    </div>
+  </div>
+</template>
+
 <script>
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 
 import MyTable from './MyTable.vue'
 
@@ -10,23 +24,23 @@ export default {
         name: 'id',
         text: 'ID',
         align: 'center',
-        isVisible: true
+        isVisible: false
       },
       {
         name: 'name',
-        text: 'Ad',
+        text: 'Name',
         align: 'left',
         isVisible: true
       },
       {
         name: 'surname',
-        text: 'Soyad',
+        text: 'Surname',
         align: 'left',
         isVisible: true
       },
       {
         name: 'actions',
-        text: 'İşlemler',
+        text: 'Actions',
         align: 'center',
         isVisible: true
       }
@@ -55,17 +69,3 @@ export default {
   components: { MyTable }
 }
 </script>
-
-<template>
-  <div class="flex flex-col items-center gap-4">
-    <div class="w-1/2">
-      <my-table :columns="cols" :data="data">
-        <template #actions>
-          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2">
-            SİL
-          </button>
-        </template>
-      </my-table>
-    </div>
-  </div>
-</template>

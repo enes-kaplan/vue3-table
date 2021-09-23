@@ -57,12 +57,12 @@ export default {
 
 <style>
 thead > tr {
-	@apply divide-x divide-gray-400 border-b border-gray-400;
+  @apply divide-x divide-gray-400 border-b border-gray-400;
 }
 tbody > tr {
-	@apply divide-x divide-gray-400;
+  @apply divide-x divide-gray-400;
 }
 th, td {
-	@apply p-2;
+  @apply p-2;
 }
 </style>
