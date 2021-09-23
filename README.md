@@ -1,7 +1,4 @@
-# Vue 3 + Vite
+# Introduction
+This is a test project that I made to practice and better understand Vue 3. I haven't seen a thorough table component for Vue 3 this may fill in that gap for future uses. It may go open source with it after it matures enough for public usage.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+README will be updated with examples and documentation as more functions are developed.
