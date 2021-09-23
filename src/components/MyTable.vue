@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 export default {
 	props: {
@@ -31,13 +31,12 @@ export default {
 			required: true
 		}
 	},
-	setup() {
+	setup(props) {
+		const visibleColumns= computed(() => {
+			return props.columns.filter(f => f.isVisible === true)
+		})
 
-	},
-	computed: {
-		visibleColumns() {
-			return this.columns.filter(f => f.isVisible === true)
-		}
+		return { visibleColumns }
 	}
 }
 </script>
