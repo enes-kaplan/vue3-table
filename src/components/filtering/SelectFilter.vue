@@ -1,5 +1,5 @@
 <template>
-  <select @change="emitInput">
+  <select class="input-select" @change="emitInput">
     <option v-for="option in filterList" :key="option.key" :value="option.key">
       {{ option.text }}
     </option>
