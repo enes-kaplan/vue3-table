@@ -23,6 +23,12 @@ export default {
         text: 'Soyad',
         align: 'left',
         isVisible: true
+      },
+      {
+        name: 'actions',
+        text: 'İşlemler',
+        align: 'center',
+        isVisible: true
       }
     ])
 
@@ -53,13 +59,13 @@ export default {
 <template>
   <div class="flex flex-col items-center gap-4">
     <div class="w-1/2">
-      <my-table :columns="cols" :data="data" />
+      <my-table :columns="cols" :data="data">
+        <template #actions>
+          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2">
+            SİL
+          </button>
+        </template>
+      </my-table>
     </div>
   </div>
 </template>
-
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>
