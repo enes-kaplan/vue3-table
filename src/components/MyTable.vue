@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full border border-gray-400 border-collapse">
+  <table class="w-full border border-gray-400 border-collapse" :class="tableClass">
     <thead>
       <tr>
         <th v-for="col in visibleColumns" :key="col.name">
@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200" :class="{ 'bg-gray-100': i % 2 === 1 }">
+      <tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200">
         <td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
           <slot :name="col.name" :data="row">
             {{ row[col.name] }}
@@ -31,11 +31,22 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    striped: {
+      type: Boolean,
+      default: () => false,
+      required: false
     }
   },
   setup(props) {
     const visibleColumns = computed(() => {
       return props.columns.filter(f => f.isVisible === true)
+    })
+
+    const tableClass = computed(() => {
+      return props.striped === true
+        ? 'striped'
+        : ''
     })
 
     function columnClasses(col) {
@@ -53,12 +64,15 @@ export default {
       return classList
     }
 
-    return { visibleColumns, columnClasses }
+    return { visibleColumns, tableClass, columnClasses }
   }
 }
 </script>
 
 <style>
+.striped > tbody tr:nth-child(even) {
+  @apply bg-gray-100;
+}
 thead > tr {
   @apply divide-x divide-gray-400 border-b border-gray-400;
 }
