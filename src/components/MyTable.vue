@@ -10,7 +10,7 @@
     <tbody>
       <tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200" :class="{ 'bg-gray-100': i % 2 === 1 }">
         <td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
-          <slot :name="col.name">
+          <slot :name="col.name" :data="row">
             {{ row[col.name] }}
           </slot>
         </td>

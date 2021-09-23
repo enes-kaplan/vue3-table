@@ -2,9 +2,9 @@
   <div class="flex flex-col items-center gap-4">
     <div class="w-1/2">
       <my-table :columns="cols" :data="data">
-        <template #actions>
-          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2">
-            DEL
+        <template #actions="row">
+          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2" @click="deleteItem(row.data)">
+            TEST
           </button>
         </template>
       </my-table>
@@ -64,7 +64,11 @@ export default {
       }
     ])
 
-    return { cols, data }
+    const deleteItem = (row) => {
+      console.log(`Name Surname: ${row.name} ${row.surname}`)
+    }
+
+    return { cols, data, deleteItem }
   },
   components: { MyTable }
 }
