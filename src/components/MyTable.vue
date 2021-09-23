@@ -1,55 +1,55 @@
 <template>
-	<table class="w-full border border-gray-400 border-collapse">
-		<thead>
-			<tr>
-				<th v-for="col in visibleColumns" :key="col.name">
-					{{ col.text }}
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200" :class="{ 'bg-gray-100': i % 2 === 1 }">
-				<td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
-					{{ row[col.name] }}
-				</td>
-			</tr>
-		</tbody>
-	</table>
+  <table class="w-full border border-gray-400 border-collapse">
+    <thead>
+      <tr>
+        <th v-for="col in visibleColumns" :key="col.name">
+          {{ col.text }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200" :class="{ 'bg-gray-100': i % 2 === 1 }">
+        <td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
+          {{ row[col.name] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
 import { ref, reactive, computed } from 'vue'
 
 export default {
-	props: {
-		columns: {
-			type: Array,
-			required: true
-		},
-		data: {
-			type: Array,
-			required: true
-		}
-	},
-	setup(props) {
-		const visibleColumns= computed(() => {
-			return props.columns.filter(f => f.isVisible === true)
-		})
+  props: {
+    columns: {
+      type: Array,
+      required: true
+    },
+    data: {
+      type: Array,
+      required: true
+    }
+  },
+  setup(props) {
+    const visibleColumns = computed(() => {
+      return props.columns.filter(f => f.isVisible === true)
+    })
 
-		function columnClasses(col) {
-			const classList = []
-			if (col.align === 'left') {
-				classList.push('text-left')
-			} else if (col.align === 'right') {
-				classList.push('text-right')
-			} else {
-				classList.push('text-center')
-			}
-			return classList
-		}
+    function columnClasses(col) {
+      const classList = []
+      if (col.align === 'left') {
+        classList.push('text-left')
+      } else if (col.align === 'right') {
+        classList.push('text-right')
+      } else {
+        classList.push('text-center')
+      }
+      return classList
+    }
 
-		return { visibleColumns, columnClasses }
-	}
+    return { visibleColumns, columnClasses }
+  }
 }
 </script>
 

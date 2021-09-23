@@ -21,7 +21,7 @@ module.exports = {
     ],
     'brace-style': [
       'warn',
-      'allman',
+      '1tbs',
       {
         allowSingleLine: false
       }

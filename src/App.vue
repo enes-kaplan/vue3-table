@@ -4,8 +4,8 @@
 </script>
 
 <template>
-	<img alt="Vue logo" src="./assets/logo.png" class="mx-auto">
-	<router-view />
+  <img alt="Vue logo" src="./assets/logo.png" class="mx-auto">
+  <router-view />
 </template>
 
 <style>
