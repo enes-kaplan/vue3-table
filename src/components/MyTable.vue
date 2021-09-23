@@ -1,5 +1,5 @@
 <template>
-	<table class="border border-gray-400 border-collapse">
+	<table class="w-full border border-gray-400 border-collapse">
 		<thead>
 			<tr>
 				<th v-for="col in visibleColumns" :key="col.name">
@@ -21,7 +21,16 @@
 import { ref, reactive } from 'vue'
 
 export default {
-	props: ['columns', 'data'],
+	props: {
+		columns: {
+			type: Array,
+			required: true
+		},
+		data: {
+			type: Array,
+			required: true
+		}
+	},
 	setup() {
 
 	},

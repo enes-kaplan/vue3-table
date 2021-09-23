@@ -72,7 +72,9 @@ import MyTable from '/src/components/MyTable.vue'
 			<code>components/HelloWorld.vue</code> to test hot module replacement.
 		</p>
 		
+		<div class="w-1/2">
 			<my-table :columns="cols" :data="data" />
+		</div>
 	</div>
 </template>
 
