@@ -3,7 +3,7 @@
     <div class="w-1/2">
       <my-table :columns="cols" :data="data" is-filterable striped>
         <template #actions="row">
-          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2" @click="deleteItem(row.data)">
+          <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2" @click="customFunc(row.data)">
             TEST
           </button>
         </template>
@@ -65,11 +65,11 @@ export default {
       }
     ])
 
-    const deleteItem = (row) => {
+    const customFunc = (row) => {
       console.log(`Name Surname: ${row.name} ${row.surname}`)
     }
 
-    return { cols, data, deleteItem }
+    return { cols, data, customFunc }
   },
   components: { MyTable }
 }

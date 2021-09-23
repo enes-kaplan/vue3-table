@@ -7,8 +7,13 @@
         </th>
       </tr>
       <tr v-if="isFilterable">
-        <th v-for="(col, i) in visibleColumns" :key="'filter-' + i + '-' + col.name">
-          <ColumnFilter :column="col" @input="test" />
+        <th
+          v-for="(col, i) in visibleColumns"
+          :key="'filter-' + i + '-' + col.name"
+          :class="{ 'bg-gray-300': !col.isFilterable }"
+        >
+          <ColumnFilter v-if="col.isFilterable" :column="col" :data="data" @input="test" />
+          <div>&nbsp;</div>
         </th>
       </tr>
     </thead>
