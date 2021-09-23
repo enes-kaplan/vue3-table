@@ -36,7 +36,7 @@
 import { computed } from 'vue'
 import { applyFilter } from '../helpers/filtering.js'
 
-import ColumnFilter from './ColumnFilter.vue'
+import ColumnFilter from './filtering/ColumnFilter.vue'
 
 export default {
   props: {
