@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center gap-4">
     <div class="w-1/2">
-      <my-table :columns="cols" :data="data" striped>
+      <my-table :columns="cols" :data="data" is-filterable striped>
         <template #actions="row">
           <button class="bg-green-500 hover:bg-green-600 text-white rounded-md p-2" @click="deleteItem(row.data)">
             TEST

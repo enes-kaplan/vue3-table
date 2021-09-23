@@ -6,10 +6,19 @@
           {{ col.text }}
         </th>
       </tr>
+      <tr v-if="isFilterable">
+        <th v-for="(col, i) in visibleColumns" :key="'filter-' + i + '-' + col.name">
+          <ColumnFilter :column="col" @input="test" />
+        </th>
+      </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, i) in data" :key="i" class="hover:bg-gray-200">
-        <td v-for="col in visibleColumns" :key="'row-i-' + col.name" :class="columnClasses(col)">
+      <tr v-for="(row, i) in data" :key="'td' + i" class="hover:bg-gray-200">
+        <td
+          v-for="(col, j) in visibleColumns"
+          :key="'row-' + j + '-' + col.name"
+          :class="columnClasses(col)"
+        >
           <slot :name="col.name" :data="row">
             {{ row[col.name] }}
           </slot>
@@ -22,6 +31,8 @@
 <script>
 import { computed } from 'vue'
 
+import ColumnFilter from './ColumnFilter.vue'
+
 export default {
   props: {
     columns: {
@@ -31,6 +42,11 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    isFilterable: {
+      type: Boolean,
+      default: () => false,
+      required: false
     },
     striped: {
       type: Boolean,
@@ -64,7 +80,14 @@ export default {
       return classList
     }
 
+    function test(tval) {
+      console.log('My Value Is: ', tval)
+    }
+
     return { visibleColumns, tableClass, columnClasses }
+  },
+  components: {
+    ColumnFilter
   }
 }
 </script>
