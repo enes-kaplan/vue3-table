@@ -30,7 +30,7 @@
       </tr>
     </tbody>
   </table>
-  <pagination v-if="paginationComp" :data="data" :pagination="paginationComp" @change-page="changePage" />
+  <pagination v-if="paginationComp" :data="data" :pagination="paginationComp" @change-page="changePage" @change-per-page="changePerPage" />
 </template>
 
 <script>
@@ -92,13 +92,14 @@ export default {
 
     const initialPage = props.pagination.currentPage ? props.pagination.currentPage : 1
     const currentPage = ref(initialPage)
+    const initialPerPage = props.pagination.perPage
+    const perPage = ref(initialPerPage)
     const paginationComp = computed(() => {
       if (props.pagination !== null) {
-        const perPage = props.pagination.perPage
         const total = props.data.length
-        const lastPage = Math.floor(total / perPage) + 1
-        const from = (currentPage.value - 1) * perPage
-        const to = currentPage.value * perPage
+        const lastPage = Math.floor(total / perPage.value) + 1
+        const from = (currentPage.value - 1) * perPage.value
+        const to = currentPage.value * perPage.value
 
         return {
           currentPage,
@@ -113,8 +114,13 @@ export default {
       }
     })
 
-    function changePage(page) {
-      currentPage.value = page
+    function changePage(newPage) {
+      currentPage.value = newPage
+    }
+
+    function changePerPage(newPerPage) {
+      debugger
+      perPage.value = newPerPage
     }
 
     function columnClasses(col) {
@@ -137,7 +143,7 @@ export default {
       filteredColumn.filterValue = filterOptions.value
     }
 
-    return { filteredData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage }
+    return { filteredData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage, changePerPage }
   },
   components: {
     ColumnFilter,

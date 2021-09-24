@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center gap-4">
-    <div class="w-1/2">
+    <div>
       <my-table
         :columns="cols"
         :data="data"
