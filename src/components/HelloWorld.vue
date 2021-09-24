@@ -93,6 +93,69 @@ export default {
         surname: 'Willif',
         birthDate: '1993-05-05',
         isApproved: false
+      },
+      {
+        id: 1,
+        name: 'John',
+        surname: 'Doe',
+        birthDate: '1992-01-01',
+        isApproved: true
+      },
+      {
+        id: 2,
+        name: 'Mary',
+        surname: 'Sheep',
+        birthDate: '1994-07-11',
+        isApproved: false
+      },
+      {
+        id: 3,
+        name: 'Laurie',
+        surname: 'Willif',
+        birthDate: '1993-05-05',
+        isApproved: false
+      },
+      {
+        id: 1,
+        name: 'John',
+        surname: 'Doe',
+        birthDate: '1992-01-01',
+        isApproved: true
+      },
+      {
+        id: 2,
+        name: 'Mary',
+        surname: 'Sheep',
+        birthDate: '1994-07-11',
+        isApproved: false
+      },
+      {
+        id: 3,
+        name: 'Laurie',
+        surname: 'Willif',
+        birthDate: '1993-05-05',
+        isApproved: false
+      },
+      {
+        id: 1,
+        name: 'John',
+        surname: 'Doe',
+        birthDate: '1992-01-01',
+        isApproved: true
+      },
+      {
+        id: 2,
+        name: 'Mary',
+        surname: 'Sheep',
+        birthDate: '1994-07-11',
+        isApproved: false
+      },
+      {
+        id: 3,
+        name: 'Laurie',
+        surname: 'Willif',
+        birthDate: '1993-05-05',
+        isApproved: false
       }
     ])
 

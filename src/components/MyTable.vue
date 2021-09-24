@@ -30,13 +30,15 @@
       </tr>
     </tbody>
   </table>
+  <pagination v-if="paginationComp" :data="data" :pagination="paginationComp" @change-page="changePage" />
 </template>
 
 <script>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { applyFilter, applyPagination } from '../helpers/filtering.js'
 
 import ColumnFilter from './filtering/ColumnFilter.vue'
+import Pagination from './Pagination.vue'
 
 export default {
   props: {
@@ -73,7 +75,7 @@ export default {
     const filteredData = computed(() => {
       let data = applyFilter(props.columns, [...props.data], props.locale)
       if (props.pagination !== null) {
-        data = applyPagination(data, paginationComp.from, paginationComp.to)
+        data = applyPagination(data, paginationComp.value.from, paginationComp.value.to)
       }
       return data
     })
@@ -88,23 +90,32 @@ export default {
         : ''
     })
 
+    const initialPage = props.pagination.currentPage ? props.pagination.currentPage : 1
+    const currentPage = ref(initialPage)
     const paginationComp = computed(() => {
-      const currentPage = props.pagination.currentPage ? props.pagination.currentPage : 1
-      const perPage = props.pagination.perPage
-      const total = props.data.length
-      const lastPage = Math.floor(total / perPage) + 1
-      const from = (currentPage - 1) * perPage
-      const to = currentPage * perPage
+      if (props.pagination !== null) {
+        const perPage = props.pagination.perPage
+        const total = props.data.length
+        const lastPage = Math.floor(total / perPage) + 1
+        const from = (currentPage.value - 1) * perPage
+        const to = currentPage.value * perPage
 
-      return {
-        currentPage,
-        perPage,
-        total,
-        lastPage,
-        from,
-        to
+        return {
+          currentPage,
+          perPage,
+          total,
+          lastPage,
+          from,
+          to
+        }
+      } else {
+        return null
       }
     })
+
+    function changePage(page) {
+      currentPage.value = page
+    }
 
     function columnClasses(col) {
       const classList = []
@@ -126,10 +137,11 @@ export default {
       filteredColumn.filterValue = filterOptions.value
     }
 
-    return { filteredData, visibleColumns, tableClass, columnClasses, applyColumnFilter }
+    return { filteredData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage }
   },
   components: {
-    ColumnFilter
+    ColumnFilter,
+    Pagination
   }
 }
 </script>
