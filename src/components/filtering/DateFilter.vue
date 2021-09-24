@@ -1,15 +1,35 @@
 <template>
-  <template v-if="column.dataType === 'date'">
-    <input v-model="date" type="date" class="input-text" @change="emitInput">
-  </template>
-  <div class="flex flex-row gap-2" v-else>
-    <input v-model="dateStart" type="date" class="input-text" @change="emitInput">
-    <input v-model="dateEnd" type="date" class="input-text" @change="emitInput">
+  <div v-if="column.dataType === 'date'" class="flex flex-row gap-2">
+    <input v-model="date" type="date" class="input-text w-full" @change="emitInput">
+    <button v-if="date !== null" class="focus:outline-none" @click="date = null">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
+    <button v-else class="cursor-default opacity-0">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
+  </div>
+  <div v-else class="flex flex-row gap-2">
+    <input v-model="dateStart" type="date" class="input-text w-full" @change="emitInput">
+    <button v-if="dateStart !== null" class="focus:outline-none" @click="dateStart = null">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
+    <button v-else class="cursor-default opacity-0">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
+    <input v-model="dateEnd" type="date" class="input-text w-full" @change="emitInput">
+    <button v-if="dateEnd !== null" class="focus:outline-none" @click="dateEnd = null">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
+    <button v-else class="cursor-default opacity-0">
+      <icon-cross class="w-6 h-6 text-gray-600" />
+    </button>
   </div>
 </template>
 
 <script>
 import { ref, computed } from 'vue'
+
+import IconCross from '../common/icons/IconCross.vue'
 
 export default {
   props: {
@@ -43,6 +63,9 @@ export default {
     }
 
     return { date, dateStart, dateEnd, filterList, emitInput }
+  },
+  components: {
+    IconCross
   }
 }
 </script>
