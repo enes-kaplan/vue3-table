@@ -59,6 +59,7 @@ export default {
   --switch-container-width: 50px;
   --switch-size: calc(var(--switch-container-width) / 2);
   --light-gray: #e2e8f0;
+  --light-red: #fca5a5;
   --gray: #cbd5e0;
   --dark-gray: #a0aec0;
   --teal: #4fd1c5;
@@ -75,6 +76,12 @@ export default {
   /* In case the label gets really long, the toggle shouldn't shrink. */
   flex-shrink: 0;
   transition: background-color 0.25s ease-in-out;
+}
+.cleared .switch {
+  background-color: var(--light-red);
+}
+.cleared .switch::before {
+  border: 2px solid var(--light-red);
 }
 .switch::before {
   content: "";
