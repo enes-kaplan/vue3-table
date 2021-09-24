@@ -36,10 +36,6 @@ export default {
     column: {
       type: Object,
       required: true
-    },
-    data: {
-      type: Array,
-      required: true
     }
   },
   emits: ['input'],
