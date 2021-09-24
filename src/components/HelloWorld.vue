@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 import MyTable from './MyTable.vue'
 
@@ -96,23 +96,7 @@ export default {
       }
     ])
 
-    const currentPage = ref(1)
-    const perPage = ref(5)
-    const pagination = computed(() => {
-      const total = data.value.length
-      const lastPage = Math.floor(total / perPage.value) + 1
-      const from = (currentPage.value - 1) * perPage.value
-      const to = currentPage.value * perPage.value
-
-      return {
-        currentPage,
-        perPage,
-        total,
-        lastPage,
-        from,
-        to
-      }
-    })
+    const pagination = ref({ currentPage: 1, perPage: 5 })
 
     const customFunc = (row) => {
       console.log(`Name Surname: ${row.name} ${row.surname}`)

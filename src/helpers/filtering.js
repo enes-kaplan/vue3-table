@@ -1,13 +1,12 @@
 export function applyFilter(columns, data, locale) {
   columns.forEach(col => {
-    if (col.isFilterable && col.filterValue !== null && col.filterValue !== undefined) {
+    if (col.isVisible !== false && col.isFilterable && col.filterValue !== null && col.filterValue !== undefined) {
       data = data.filter(d => {
         const cellValue = d[col.name]
         const filterValue = col.filterValue
         const dataType = col.dataType
 
         if (dataType === 'text') {
-          console.log(filterValue.trim().length)
           return filterValue.trim().length > 0
             ? cellValue.trim().toLocaleLowerCase(locale).includes(
               filterValue.trim().toLocaleLowerCase(locale)

@@ -73,10 +73,11 @@ export default {
     const filteredData = computed(() => {
       let data = applyFilter(props.columns, [...props.data], props.locale)
       if (props.pagination !== null) {
-        data = applyPagination(data, props.pagination.from, props.pagination.to)
+        data = applyPagination(data, paginationComp.from, paginationComp.to)
       }
       return data
     })
+
     const visibleColumns = computed(() => {
       return props.columns.filter(f => f.isVisible !== false)
     })
@@ -85,6 +86,24 @@ export default {
       return props.striped === true
         ? 'striped'
         : ''
+    })
+
+    const paginationComp = computed(() => {
+      const currentPage = props.pagination.currentPage ? props.pagination.currentPage : 1
+      const perPage = props.pagination.perPage
+      const total = props.data.length
+      const lastPage = Math.floor(total / perPage) + 1
+      const from = (currentPage - 1) * perPage
+      const to = currentPage * perPage
+
+      return {
+        currentPage,
+        perPage,
+        total,
+        lastPage,
+        from,
+        to
+      }
     })
 
     function columnClasses(col) {
