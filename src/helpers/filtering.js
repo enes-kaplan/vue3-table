@@ -14,7 +14,7 @@ export function applyFilter(columns, data, locale) {
             filterValue.trim().toLocaleUpperCase(locale)
           )
         } else if (dataType === 'select' || dataType === 'boolean') {
-          return cellValue === filterValue
+          return cellValue === filterValue || filterValue === ''
         }
 
         return []

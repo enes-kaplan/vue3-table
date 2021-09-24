@@ -1,10 +1,10 @@
 <template>
   <select class="input-select" @change="emitInput">
+    <option key="null" :value="null" />
     <option v-for="option in filterList" :key="option.key" :value="option.key">
       {{ option.text }}
     </option>
   </select>
-  <!-- TODO: Option to clear selected value -->
 </template>
 
 <script>
