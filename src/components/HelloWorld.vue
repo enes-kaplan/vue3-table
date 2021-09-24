@@ -4,6 +4,7 @@
       <my-table
         :columns="cols"
         :data="data"
+        :pagination="pagination"
         locale="tr"
         is-filterable
         striped
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import MyTable from './MyTable.vue'
 
@@ -95,11 +96,29 @@ export default {
       }
     ])
 
+    const currentPage = ref(1)
+    const perPage = ref(5)
+    const pagination = computed(() => {
+      const total = data.value.length
+      const lastPage = Math.floor(total / perPage.value) + 1
+      const from = (currentPage.value - 1) * perPage.value
+      const to = currentPage.value * perPage.value - 1
+
+      return {
+        currentPage,
+        perPage,
+        total,
+        lastPage,
+        from,
+        to
+      }
+    })
+
     const customFunc = (row) => {
       console.log(`Name Surname: ${row.name} ${row.surname}`)
     }
 
-    return { cols, data, customFunc }
+    return { cols, data, pagination, customFunc }
   },
   components: { MyTable }
 }

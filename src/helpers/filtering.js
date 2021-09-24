@@ -39,6 +39,10 @@ export function applyFilter(columns, data, locale) {
   return data
 }
 
-export function applyPagination(columns, data, currentPage, perPage, sortField, sortDirection) {
+export function applyPagination(columns, data, currentPage, perPage) {
+  return data
+}
 
+export function applySorting(columns, data, sortField, sortDirection) {
+  return data
 }

@@ -34,7 +34,7 @@
 
 <script>
 import { computed } from 'vue'
-import { applyFilter } from '../helpers/filtering.js'
+import { applyFilter, applyPagination } from '../helpers/filtering.js'
 
 import ColumnFilter from './filtering/ColumnFilter.vue'
 
@@ -47,6 +47,11 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    pagination: {
+      type: Object,
+      default: () => null,
+      required: false
     },
     locale: {
       type: String,
@@ -66,7 +71,11 @@ export default {
   },
   setup(props) {
     const filteredData = computed(() => {
-      return applyFilter(props.columns, [...props.data], props.locale)
+      let data = applyFilter(props.columns, [...props.data], props.locale)
+      if (props.pagination !== null) {
+        data = applyPagination(props.column, [...props.data], props.pagination.currentPage, props.pagination.perPage)
+      }
+      return data
     })
     const visibleColumns = computed(() => {
       return props.columns.filter(f => f.isVisible !== false)
