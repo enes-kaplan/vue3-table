@@ -73,7 +73,7 @@ export default {
     const filteredData = computed(() => {
       let data = applyFilter(props.columns, [...props.data], props.locale)
       if (props.pagination !== null) {
-        data = applyPagination(props.column, data, props.pagination.currentPage, props.pagination.perPage)
+        data = applyPagination(data, props.pagination.from, props.pagination.to)
       }
       return data
     })

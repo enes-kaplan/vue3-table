@@ -39,8 +39,8 @@ export function applyFilter(columns, data, locale) {
   return data
 }
 
-export function applyPagination(columns, data, currentPage, perPage) {
-  return data
+export function applyPagination(data, from, to) {
+  return data.slice(from, to)
 }
 
 export function applySorting(columns, data, sortField, sortDirection) {

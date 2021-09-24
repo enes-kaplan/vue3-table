@@ -102,7 +102,7 @@ export default {
       const total = data.value.length
       const lastPage = Math.floor(total / perPage.value) + 1
       const from = (currentPage.value - 1) * perPage.value
-      const to = currentPage.value * perPage.value - 1
+      const to = currentPage.value * perPage.value
 
       return {
         currentPage,
