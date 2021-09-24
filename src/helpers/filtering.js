@@ -7,12 +7,15 @@ export function applyFilter(columns, data, locale) {
         const dataType = col.dataType
 
         if (dataType === 'text') {
-          return cellValue.trim().toLocaleLowerCase(locale).includes(
-            filterValue.trim().toLocaleLowerCase(locale)
-          )
-          || cellValue.trim().toLocaleUpperCase(locale).includes(
-            filterValue.trim().toLocaleUpperCase(locale)
-          )
+          console.log(filterValue.trim().length)
+          return filterValue.trim().length > 0
+            ? cellValue.trim().toLocaleLowerCase(locale).includes(
+              filterValue.trim().toLocaleLowerCase(locale)
+            )
+            || cellValue.trim().toLocaleUpperCase(locale).includes(
+              filterValue.trim().toLocaleUpperCase(locale)
+            )
+            : true
         } else if (dataType === 'select' || dataType === 'boolean') {
           return cellValue === filterValue || filterValue === ''
         } else if (dataType === 'date') {
