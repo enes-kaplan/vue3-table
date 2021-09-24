@@ -15,9 +15,21 @@ export function applyFilter(columns, data, locale) {
           )
         } else if (dataType === 'select' || dataType === 'boolean') {
           return cellValue === filterValue || filterValue === ''
+        } else if (dataType === 'date') {
+          return cellValue === filterValue.date || filterValue.date === null
+        } else if (dataType === 'daterange') {
+          if (filterValue.dateStart !== null && filterValue.dateEnd !== null) {
+            return cellValue >= filterValue.dateStart && cellValue <= filterValue.dateEnd
+          } else if (filterValue.dateStart !== null) {
+            return cellValue >= filterValue.dateStart
+          } else if (filterValue.dateEnd !== null) {
+            return cellValue <= filterValue.dateEnd
+          } else {
+            return true
+          }
         }
 
-        return []
+        return true
       })
     }
   })

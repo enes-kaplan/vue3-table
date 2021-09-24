@@ -58,6 +58,13 @@ export default {
         isFilterable: true
       },
       {
+        name: 'birthDate',
+        text: 'Birth Date',
+        dataType: 'daterange',
+        align: 'center',
+        isFilterable: true
+      },
+      {
         name: 'actions',
         text: 'Actions',
         align: 'center'
@@ -69,18 +76,21 @@ export default {
         id: 1,
         name: 'John',
         surname: 'Doe',
+        birthDate: '1992-01-01',
         isApproved: true
       },
       {
         id: 2,
         name: 'Mary',
         surname: 'Sheep',
+        birthDate: '1994-07-11',
         isApproved: false
       },
       {
         id: 3,
         name: 'Laurie',
         surname: 'Willif',
+        birthDate: '1993-05-05',
         isApproved: false
       }
     ])

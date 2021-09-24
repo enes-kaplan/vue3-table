@@ -1,5 +1,5 @@
 <template>
-  <input class="input-text" @keyup="emitInput">
+  <input type="text" class="input-text" @keyup="emitInput">
 </template>
 
 <script>

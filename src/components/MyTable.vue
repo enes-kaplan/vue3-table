@@ -94,10 +94,8 @@ export default {
     }
 
     function applyColumnFilter(filterOptions) {
-      console.log('BEFORE', props.columns)
       const filteredColumn = props.columns.find(f => f.name === filterOptions.column.name)
       filteredColumn.filterValue = filterOptions.value
-      console.log('AFTER', props.columns)
     }
 
     return { filteredData, visibleColumns, tableClass, columnClasses, applyColumnFilter }
