@@ -138,14 +138,10 @@ export default {
     })
 
     function toggleSorting(col) {
-      if (sorting.value.column !== col.name) {
-        sorting.value = { column: col.name, direction: 'asc' }
-      } else {
-        const direction = sorting.value.direction === 'asc'
-          ? 'desc'
-          : 'asc'
-        sorting.value = { column: col.name, direction }
-      }
+      const directionCycle = ['asc', 'desc', null]
+      const currentIndex = directionCycle.findIndex(f => f === sorting.value.direction)
+      const direction = directionCycle[(currentIndex + 1) % 3]
+      sorting.value = { column: col.name, direction }
     }
 
     function changePage(newPage) {
