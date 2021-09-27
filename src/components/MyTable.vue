@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, i) in filteredData" :key="'td' + i" class="hover:bg-gray-200">
+      <tr v-for="(row, i) in paginatedData" :key="'td' + i" class="hover:bg-gray-200">
         <td
           v-for="(col, j) in visibleColumns"
           :key="'row-' + j + '-' + col.name"
@@ -73,11 +73,13 @@ export default {
   },
   setup(props) {
     const filteredData = computed(() => {
-      let data = applyFilter(props.columns, [...props.data], props.locale)
-      if (props.pagination !== null) {
-        data = applyPagination(data, paginationComp.value.from, paginationComp.value.to)
-      }
-      return data
+      return applyFilter(props.columns, [...props.data], props.locale)
+    })
+
+    const paginatedData = computed(() => {
+      return paginationComp.value !== null
+        ? applyPagination(filteredData.value, paginationComp.value.from, paginationComp.value.to)
+        : filteredData.value
     })
 
     const visibleColumns = computed(() => {
@@ -96,7 +98,7 @@ export default {
     const perPage = ref(initialPerPage)
     const paginationComp = computed(() => {
       if (props.pagination !== null) {
-        const total = props.data.length
+        const total = filteredData.value ? filteredData.value.length : 0
         const lastPage = Math.floor(total / perPage.value) + 1
         const from = (currentPage.value - 1) * perPage.value
         const to = currentPage.value * perPage.value
@@ -148,7 +150,7 @@ export default {
       filteredColumn.filterValue = filterOptions.value
     }
 
-    return { filteredData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage, changePerPage }
+    return { filteredData, paginatedData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage, changePerPage }
   },
   components: {
     ColumnFilter,
