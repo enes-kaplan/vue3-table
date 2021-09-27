@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { applyFilter, applyPagination } from '../helpers/filtering.js'
 
 import ColumnFilter from './filtering/ColumnFilter.vue'
@@ -114,12 +114,17 @@ export default {
       }
     })
 
+    watch([currentPage, paginationComp], () => {
+      if (paginationComp.value.from > paginationComp.value.total) {
+        currentPage.value--
+      }
+    })
+
     function changePage(newPage) {
       currentPage.value = newPage
     }
 
     function changePerPage(newPerPage) {
-      debugger
       perPage.value = newPerPage
     }
 
