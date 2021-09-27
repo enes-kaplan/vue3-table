@@ -42,6 +42,7 @@ export default {
         dataType: 'text',
         align: 'left',
         customClass: 'font-bold italic',
+        isSortable: true,
         isFilterable: true
       },
       {
@@ -49,6 +50,7 @@ export default {
         text: 'Surname',
         dataType: 'select',
         align: 'left',
+        isSortable: true,
         isFilterable: true
       },
       {
@@ -63,6 +65,7 @@ export default {
         text: 'Birth Date',
         dataType: 'daterange',
         align: 'center',
+        isSortable: true,
         isFilterable: true
       },
       {

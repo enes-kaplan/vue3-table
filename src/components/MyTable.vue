@@ -3,7 +3,14 @@
     <thead>
       <tr>
         <th v-for="col in visibleColumns" :key="col.name">
-          {{ col.text }}
+          <div class="flex flex-row gap-2 items-center" :class="{ 'hover:text-blue-600 cursor-pointer': col.isSortable }" @click="toggleSorting(col)">
+            {{ col.text }}
+            <span v-if="col.isSortable">
+              <icon-sort-ascending class="w-5 h-5" v-if="sorting.column === col.name && sorting.direction === 'asc'" />
+              <icon-sort-descending class="w-5 h-5" v-else-if="sorting.column === col.name && sorting.direction === 'desc'" />
+              <div class="w-5 h-5" v-else />
+            </span>
+          </div>
         </th>
       </tr>
       <tr v-if="isFilterable">
@@ -35,8 +42,10 @@
 
 <script>
 import { ref, computed, watch } from 'vue'
-import { applyFilter, applyPagination } from '../helpers/filtering.js'
+import { applyFilter, applySorting, applyPagination } from '../helpers/filtering.js'
 
+import IconSortAscending from './common/icons/IconSortAscending.vue'
+import IconSortDescending from './common/icons/IconSortDescending.vue'
 import ColumnFilter from './filtering/ColumnFilter.vue'
 import Pagination from './Pagination.vue'
 
@@ -76,9 +85,13 @@ export default {
       return applyFilter(props.columns, [...props.data], props.locale)
     })
 
+    const sortedData = computed(() => {
+      return applySorting(filteredData.value, sorting.value.column, sorting.value.direction, props.locale)
+    })
+
     const paginatedData = computed(() => {
       return paginationComp.value !== null
-        ? applyPagination(filteredData.value, paginationComp.value.from, paginationComp.value.to)
+        ? applyPagination(sortedData.value, paginationComp.value.from, paginationComp.value.to)
         : filteredData.value
     })
 
@@ -91,6 +104,8 @@ export default {
         ? 'striped'
         : ''
     })
+
+    const sorting = ref({ column: null, direction: null })
 
     const initialPage = props.pagination.currentPage ? props.pagination.currentPage : 1
     const currentPage = ref(initialPage)
@@ -122,6 +137,17 @@ export default {
       }
     })
 
+    function toggleSorting(col) {
+      if (sorting.value.column !== col.name) {
+        sorting.value = { column: col.name, direction: 'asc' }
+      } else {
+        const direction = sorting.value.direction === 'asc'
+          ? 'desc'
+          : 'asc'
+        sorting.value = { column: col.name, direction }
+      }
+    }
+
     function changePage(newPage) {
       currentPage.value = newPage
     }
@@ -150,9 +176,11 @@ export default {
       filteredColumn.filterValue = filterOptions.value
     }
 
-    return { filteredData, paginatedData, visibleColumns, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage, changePerPage }
+    return { paginatedData, visibleColumns, toggleSorting, sorting, paginationComp, tableClass, columnClasses, applyColumnFilter, changePage, changePerPage }
   },
   components: {
+    IconSortAscending,
+    IconSortDescending,
     ColumnFilter,
     Pagination
   }
