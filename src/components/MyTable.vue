@@ -86,12 +86,12 @@ export default {
     })
 
     const sortedData = computed(() => {
-      return applySorting(filteredData.value, sorting.value.column, sorting.value.direction, props.locale)
+      return applySorting([...filteredData.value], sorting.value.column, sorting.value.direction, props.locale)
     })
 
     const paginatedData = computed(() => {
       return paginationComp.value !== null
-        ? applyPagination(sortedData.value, paginationComp.value.from, paginationComp.value.to)
+        ? applyPagination([...sortedData.value], paginationComp.value.from, paginationComp.value.to)
         : filteredData.value
     })
 
