@@ -9,6 +9,7 @@
         is-filterable
         striped
       >
+        <!-- TODO: Add row data editing -->
         <template #isApproved="row">
           <input type="checkbox" :checked="row.data.isApproved" disabled>
         </template>
