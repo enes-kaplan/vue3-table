@@ -39,7 +39,17 @@ export function applyFilter(columns, data, locale) {
 }
 
 export function applySorting(data, sortField, sortDirection, locale) {
-  return data
+  if (sortField !== null && sortDirection !== null) {
+    return data.sort((a, b) => {
+      if (sortDirection === 'asc') {
+        return a[sortField].localeCompare(b[sortField], locale)
+      } else {
+        return b[sortField].localeCompare(a[sortField], locale)
+      }
+    })
+  } else {
+    return data
+  }
 }
 
 export function applyPagination(data, from, to) {
