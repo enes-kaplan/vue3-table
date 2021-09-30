@@ -56,6 +56,7 @@ import ColumnFilter from './filtering/ColumnFilter.vue'
 import Pagination from './Pagination.vue'
 
 export default {
+  name: 'VueTable',
   props: {
     columns: {
       type: Array,

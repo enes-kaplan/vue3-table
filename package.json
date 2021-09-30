@@ -1,10 +1,21 @@
 {
-	"name": "vite-vue3-test",
-	"version": "0.0.1",
+	"name": "vue-my-table-3",
+	"version": "0.0.2",
 	"description": "Vue 3 datatable component practice",
 	"author": "Enes Kaplan",
 	"license": "MIT",
 	"private": false,
+	"files": [
+		"dist"
+	],
+	"main": "./dist/vue-my-table-3.umd.js",
+	"module": "./dist/vue-my-table-3.es.js",
+	"exports": {
+		".": {
+      "import": "./dist/vue-my-table-3.es.js",
+      "require": "./dist/vue-my-table-3.umd.js"
+    }
+	},
   "keywords": [
     "vue",
     "component",
