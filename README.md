@@ -53,3 +53,12 @@ Required: true
 Required: true
 
 This property should contain an array of objects that have property names that match with `name` column properties from the `columns` table property.
+
+### pagination
+Required: false
+
+This property is optional but can allow for the given data set to be paginated once provided.
+| Property    | Description | Type |
+| ----------- | ----------- | ---- |
+| currentPage | Page to start at | `Number` |
+| perPage     | How many rows to show per page | `Number` |
