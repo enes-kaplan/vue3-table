@@ -1,6 +1,6 @@
 {
 	"name": "vue-my-table-3",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Vue 3 datatable component practice",
 	"author": "Enes Kaplan",
 	"license": "MIT",
@@ -18,11 +18,13 @@
 	},
   "keywords": [
     "vue",
+    "vue3",
     "component",
     "table",
     "datatable",
-    "pagination-components",
-    "json"
+    "sorting",
+    "filtering",
+    "pagination-components"
   ],
 	"scripts": {
 		"dev": "vite",
