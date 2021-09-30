@@ -38,8 +38,13 @@ Then you can use it in your Vue components as:
 ### columns
 Required: true
 
-| Property    | Description                                 | Required?   | Default     | Values          |
-| ----------- | -----------                                 | ----------- | ----------- | ----------      |
-| name        | Name of the column to use from the data set | true        | `-`         | `-`             |
-| text        | Header text to appear on the table          | true        | `-`         | `-`             |
-| align       | Text alignment for data rows                | false       | `'center'`    | `'left'` `'right'` |
+| Property    | Description | Required?   | Default     | Values |
+| ----------- | ----------- | ----------- | ----------- | ---------- |
+| name        | Name of the column to use from the data set | true | `-` | `-` |
+| text        | Header text to appear on the table | true | `-` | `-` |
+| dataType    | Data type to use for column filtering, only used in conjunction with `isFilterable` column property | false | `'text'` |  `'text'` `'select'` `'boolean'` `'date'` `'daterange'` |
+| align       | Text alignment for data rows | false | `'center'` | `'left'` `'right'` |
+| customClass | Custom class to apply to the data cell | false | `-` | `-` |
+| isSortable  | Sets if the column should sort | false | `false` | `true` <br> `false` |
+| isFilterable  | Sets if the column should be filtered, used in conjunction with `dataType` column property | false | `false` | `true` <br> `false` |
+| isVisible   | Sets if the column should be visible | false | `true` | `true` <br> `false` |
