@@ -37,7 +37,13 @@
       </tr>
     </tbody>
   </table>
-  <pagination v-if="paginationComp" :data="data" :pagination="paginationComp" @change-page="changePage" @change-per-page="changePerPage" />
+  <pagination
+    v-if="paginationComp"
+    :data="data"
+    :pagination="paginationComp"
+    @change-page="changePage"
+    @change-per-page="changePerPage"
+  />
 </template>
 
 <script>
