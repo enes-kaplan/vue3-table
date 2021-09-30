@@ -62,3 +62,24 @@ This property is optional but can allow for the given data set to be paginated o
 | ----------- | ----------- | ---- |
 | currentPage | Page to start at | `Number` |
 | perPage     | How many rows to show per page | `Number` |
+
+### locale
+Required: false
+
+Default: `'en-US'`
+
+This property is used for deciding locale for sorting and filtering.
+
+### isFilterable
+Required: false
+
+Default: `false`
+
+If set to true, adds a row under column headers for filtering that column (if that column's `isFilterable` property is set to true).
+
+### striped
+Required: false
+
+Default: `false`
+
+If set to true, adds stripes to the even rows.
