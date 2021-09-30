@@ -55,6 +55,8 @@ module.exports = {
     'object-curly-spacing': 'warn',
     'operator-linebreak': ['warn', 'before', { overrides: { '=': 'after' } }],
     camelcase: 'warn',
+    'vue/no-multiple-template-root': 'off',
+    'vue/no-v-model-argument': 'off',
     'vue/order-in-components':
       [
         'warn',
