@@ -48,3 +48,8 @@ Required: true
 | isSortable  | Sets if the column should sort | false | `false` | `true` <br> `false` |
 | isFilterable  | Sets if the column should be filtered, used in conjunction with `dataType` column property | false | `false` | `true` <br> `false` |
 | isVisible   | Sets if the column should be visible | false | `true` | `true` <br> `false` |
+
+### data
+Required: true
+
+This property should contain an array of objects that have property names that match with `name` column properties from the `columns` table property.
