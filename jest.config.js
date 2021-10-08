@@ -1,6 +1,6 @@
 module.exports = {
   // preset: '@vue/cli-plugin-unit-jest/presets/no-babel',
-  testPathIgnorePatterns: ["<rootDir>/cypress/"],
+  testPathIgnorePatterns: ["<rootDir>/tests/e2e/"],
   moduleFileExtensions: ['js', 'vue'],
   transform: {
     '^.+\\.vue$': 'vue-jest',
