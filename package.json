@@ -1,21 +1,51 @@
 {
-	"name": "vue-my-table-3",
-	"version": "0.0.3",
-	"description": "Vue 3 datatable component practice",
-	"author": "Enes Kaplan",
-	"license": "MIT",
-	"private": false,
-	"files": [
-		"dist"
-	],
-	"main": "./dist/vue-my-table-3.umd.js",
-	"module": "./dist/vue-my-table-3.es.js",
-	"exports": {
-		".": {
+  "name": "vue-my-table-3",
+  "version": "0.0.3",
+  "private": false,
+  "description": "Vue 3 datatable component practice",
+  "author": "Enes Kaplan",
+  "scripts": {
+    "serve": "vite preview",
+    "build": "vite build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "eslint --ext .js --ext .vue . --fix",
+    "dev": "vite",
+    "test": "jest"
+  },
+  "main": "./dist/vue-my-table-3.umd.js",
+  "module": "./dist/vue-my-table-3.es.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.15.8",
+    "@testing-library/cypress": "^8.0.1",
+    "@vitejs/plugin-vue": "^1.9.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.13",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "@vue/test-utils": "^2.0.0-rc.15",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.2.4",
+    "cypress": "^8.5.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.18.0",
+    "jest": "^27.2.4",
+    "typescript": "~3.9.3",
+    "vite": "^2.5.10",
+    "vite-plugin-windicss": "^1.4.4",
+    "vue": "^3.2.13",
+    "vue-jest": "^5.0.0-alpha.10",
+    "vue-template-compiler": "^2.6.14",
+    "windicss": "^3.1.7"
+  },
+  "exports": {
+    ".": {
       "import": "./dist/vue-my-table-3.es.js",
       "require": "./dist/vue-my-table-3.umd.js"
     }
-	},
+  },
   "keywords": [
     "vue",
     "vue3",
@@ -26,23 +56,5 @@
     "filtering",
     "pagination-components"
   ],
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"serve": "vite preview",
-		"lint": "eslint --ext .js --ext .vue . --fix"
-	},
-	"devDependencies": {
-		"@vitejs/plugin-vue": "^1.9.0",
-		"@vue/eslint-config-standard": "^6.1.0",
-		"babel-eslint": "^10.1.0",
-		"eslint": "^7.32.0",
-		"eslint-config-standard": "^16.0.3",
-		"eslint-plugin-standard": "^5.0.0",
-		"eslint-plugin-vue": "^7.18.0",
-		"vue": "^3.2.13",
-		"vite": "^2.5.10",
-		"vite-plugin-windicss": "^1.4.4",
-		"windicss": "^3.1.7"
-	}
+  "license": "MIT"
 }
