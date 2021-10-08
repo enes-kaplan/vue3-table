@@ -100,4 +100,41 @@ describe('Filtering tests', () => {
     filteredData = applyFilter(columns, data)
     expect(filteredData.length.toString()).toMatch('1')
   })
+
+  it('filtering boolean', () => {
+    const columns = [
+      {
+        name: 'name',
+        text: 'Name'
+      },
+      {
+        name: 'isUserApproved',
+        text: 'Is User Approved',
+        dataType: 'boolean',
+        isFilterable: true
+      }
+    ]
+    const data = [
+      {
+        name: 'Alice',
+        isUserApproved: true
+      },
+      {
+        name: 'Sasha',
+        isUserApproved: true
+      },
+      {
+        name: 'Brock',
+        isUserApproved: false
+      }
+    ]
+
+    columns[1].filterValue = true
+    let filteredData = applyFilter(columns, data)
+    expect(filteredData.length.toString()).toMatch('2')
+
+    columns[1].filterValue = false
+    filteredData = applyFilter(columns, data)
+    expect(filteredData.length.toString()).toMatch('1')
+  })
 })
