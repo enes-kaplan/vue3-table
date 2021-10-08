@@ -147,7 +147,7 @@ describe('Filtering tests', () => {
       {
         name: 'employmentDate',
         text: 'Employment Date',
-        dataType: 'boolean',
+        dataType: 'date',
         isFilterable: true
       }
     ]
@@ -166,8 +166,44 @@ describe('Filtering tests', () => {
       }
     ]
 
-    columns[1].filterValue = '2019-11-07'
+    columns[1].filterValue = { date: '2019-11-07' }
     let filteredData = applyFilter(columns, data)
     expect(filteredData[0].name).toMatch('Sasha')
+  })
+
+  it('filtering daterange', () => {
+    const columns = [
+      {
+        name: 'name',
+        text: 'Name'
+      },
+      {
+        name: 'employmentDate',
+        text: 'Employment Date',
+        dataType: 'daterange',
+        isFilterable: true
+      }
+    ]
+    const data = [
+      {
+        name: 'Alice',
+        employmentDate: '2021-01-01'
+      },
+      {
+        name: 'Sasha',
+        employmentDate: '2019-11-07'
+      },
+      {
+        name: 'Brock',
+        employmentDate: '2020-10-10'
+      }
+    ]
+
+    columns[1].filterValue = {
+      dateStart: '2020-10-10',
+      dateEnd: '2022-01-01'
+    }
+    let filteredData = applyFilter(columns, data)
+    expect(filteredData.length.toString()).toMatch('2')
   })
 })
