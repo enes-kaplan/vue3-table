@@ -137,4 +137,37 @@ describe('Filtering tests', () => {
     filteredData = applyFilter(columns, data)
     expect(filteredData.length.toString()).toMatch('1')
   })
+
+  it('filtering date', () => {
+    const columns = [
+      {
+        name: 'name',
+        text: 'Name'
+      },
+      {
+        name: 'employmentDate',
+        text: 'Employment Date',
+        dataType: 'boolean',
+        isFilterable: true
+      }
+    ]
+    const data = [
+      {
+        name: 'Alice',
+        employmentDate: '2021-01-01'
+      },
+      {
+        name: 'Sasha',
+        employmentDate: '2019-11-07'
+      },
+      {
+        name: 'Brock',
+        employmentDate: '2020-10-10'
+      }
+    ]
+
+    columns[1].filterValue = '2019-11-07'
+    let filteredData = applyFilter(columns, data)
+    expect(filteredData[0].name).toMatch('Sasha')
+  })
 })
