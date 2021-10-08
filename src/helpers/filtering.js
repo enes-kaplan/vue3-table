@@ -1,4 +1,4 @@
-export function applyFilter(columns, data, locale) {
+export function applyFilter(columns, data, locale = 'en-US') {
   columns.forEach(col => {
     if (col.isVisible !== false && col.isFilterable && col.filterValue !== null && col.filterValue !== undefined) {
       data = data.filter(d => {
