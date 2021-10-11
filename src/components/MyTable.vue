@@ -29,6 +29,8 @@
           v-for="(col, j) in visibleColumns"
           :key="'row-' + j + '-' + col.name"
           :class="columnClasses(col)"
+          :aria-label="col.name"
+          role="cell"
         >
           <slot :name="col.name" :data="row">
             {{ row[col.name] }}
