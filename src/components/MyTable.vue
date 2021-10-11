@@ -29,6 +29,7 @@
           v-for="(col, j) in visibleColumns"
           :key="'row-' + j + '-' + col.name"
           :class="columnClasses(col)"
+          :data-value="row[col.name]"
           :aria-label="col.name"
           role="cell"
         >

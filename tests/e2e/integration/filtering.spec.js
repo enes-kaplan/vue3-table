@@ -14,7 +14,7 @@ describe('Filtering test', () => {
   it('testing filtering text', () => {
     const filterText = 'jo'
 
-    cy.findByRole('filter', { name: 'name'  })
+    cy.findByRole('filter', { name: 'name' })
       .type(filterText)
 
     cy.get('tbody')
@@ -27,8 +27,8 @@ describe('Filtering test', () => {
           .find('tr')
           .each(row => {
             cy.wrap(row)
-              .findByRole('cell', { name: 'name'  })
-              .invoke('text')
+              .findByRole('cell', { name: 'name' })
+              .invoke('data', 'value')
               .then(textVal => {
                 const test = textVal.toLowerCase()
                 expect(textVal.toLowerCase()).to.contain(filterText.toLowerCase())
@@ -38,7 +38,7 @@ describe('Filtering test', () => {
   })
 
   it('testing filtering select', () => {
-    cy.findByRole('filter', { name: 'surname'  })
+    cy.findByRole('filter', { name: 'surname' })
       .select(1)
       .invoke('val')
       .then(selectVal => {
@@ -46,11 +46,33 @@ describe('Filtering test', () => {
           .find('tr')
           .each(row => {
             cy.wrap(row)
-              .findByRole('cell', { name: /surname/  })
-              .invoke('text')
+              .findByRole('cell', { name: 'surname' })
+              .invoke('data', 'value')
               .should('equal', selectVal)
           })
       })
 
+  })
+
+  it('testing filtering boolean', () => {
+    cy.findAllByRole('filter', { name: 'isApproved' })
+      .then(checkboxElements => {
+        // We are getting the 2nd element in the array because the first one is the label and the second one is the input element
+        cy.wrap(checkboxElements[1])
+          .click({ force: true })
+          .then(checkbox => {
+            cy.wrap(checkbox)
+              .should('be.checked')
+
+            cy.get('tbody')
+              .find('tr')
+              .each(row => {
+                cy.wrap(row)
+                  .findByRole('cell', { name: 'isApproved' })
+                  .invoke('data', 'value')
+                  .should('equal', true)
+              })
+          })
+      })
   })
 })
