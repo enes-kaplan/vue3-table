@@ -1,4 +1,4 @@
-export function applyFilter(columns, data, locale) {
+export function applyFilter(columns, data, locale = 'en-US') {
   columns.forEach(col => {
     if (col.isVisible !== false && col.isFilterable && col.filterValue !== null && col.filterValue !== undefined) {
       data = data.filter(d => {
@@ -18,7 +18,7 @@ export function applyFilter(columns, data, locale) {
         } else if (dataType === 'select' || dataType === 'boolean') {
           return cellValue === filterValue || filterValue === ''
         } else if (dataType === 'date') {
-          return cellValue === filterValue.date || filterValue.date === null
+          return cellValue === filterValue.date
         } else if (dataType === 'daterange') {
           if (filterValue.dateStart !== null && filterValue.dateEnd !== null) {
             return cellValue >= filterValue.dateStart && cellValue <= filterValue.dateEnd
