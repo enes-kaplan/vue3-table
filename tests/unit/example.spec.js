@@ -1,5 +1,5 @@
 // import { shallowMount } from '@vue/test-utils'
-import { applyFilter, applySorting } from '../../src/helpers/filtering.js'
+import { applyFilter, applyPagination, applySorting } from '../../src/helpers/filtering.js'
 
 describe('Filtering tests', () => {
   it('filtering text without locale', () => {
@@ -241,5 +241,37 @@ describe('Sorting tests', () => {
     expect(sortedData[0].name).toMatch('Chris')
     expect(sortedData[1].name).toMatch('Bruce')
     expect(sortedData[2].name).toMatch('Alice')
+  })
+})
+
+describe('Pagination tests', () => {
+  it('pagination test', () => {
+    const columns = [
+      {
+        name: 'name',
+        text: 'Name',
+        dataType: 'text',
+        isFilterable: true
+      }
+    ]
+    const data = [
+      {
+        name: 'Chris'
+      },
+      {
+        name: 'Bruce'
+      },
+      {
+        name: 'Alice'
+      },
+      {
+        name: 'Henry'
+      }
+    ]
+
+    let paginatedData = applyPagination(data, 0, 2)
+    expect(paginatedData.length.toString()).toMatch('2')
+    expect(paginatedData[0].name).toMatch('Chris')
+    expect(paginatedData[1].name).toMatch('Bruce')
   })
 })
