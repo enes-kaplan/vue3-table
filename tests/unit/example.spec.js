@@ -1,5 +1,5 @@
 // import { shallowMount } from '@vue/test-utils'
-import { applyFilter } from '../../src/helpers/filtering.js'
+import { applyFilter, applySorting } from '../../src/helpers/filtering.js'
 
 describe('Filtering tests', () => {
   it('filtering text without locale', () => {
@@ -205,5 +205,41 @@ describe('Filtering tests', () => {
     }
     let filteredData = applyFilter(columns, data)
     expect(filteredData.length.toString()).toMatch('2')
+  })
+})
+
+describe('Sorting tests', () => {
+  it('sorting test', () => {
+    const columns = [
+      {
+        name: 'name',
+        text: 'Name',
+        dataType: 'text',
+        isSortable: true
+      }
+    ]
+    const data = [
+      {
+        name: 'Chris'
+      },
+      {
+        name: 'Alice'
+      },
+      {
+        name: 'Bruce'
+      }
+    ]
+
+    let sorting = { field: 'name', direction: 'asc' }
+    let sortedData = applySorting(data, sorting.field, sorting.direction)
+    expect(sortedData[0].name).toMatch('Alice')
+    expect(sortedData[1].name).toMatch('Bruce')
+    expect(sortedData[2].name).toMatch('Chris')
+
+    sorting = { field: 'name', direction: 'desc' }
+    sortedData = applySorting(data, sorting.field, sorting.direction)
+    expect(sortedData[0].name).toMatch('Chris')
+    expect(sortedData[1].name).toMatch('Bruce')
+    expect(sortedData[2].name).toMatch('Alice')
   })
 })
