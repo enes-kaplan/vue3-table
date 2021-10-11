@@ -75,4 +75,51 @@ describe('Filtering test', () => {
           })
       })
   })
+
+  it('testing filtering date', () => {
+    const filter = '2020-04-14'
+
+    cy.findByRole('filter', { name: 'employmentDate' })
+      .then(datePicker => {
+        cy.wrap(datePicker)
+          .type(filter)
+          .trigger('change')
+
+        cy.get('tbody')
+          .find('tr')
+          .each(row => {
+            cy.wrap(row)
+              .findByRole('cell', { name: 'employmentDate' })
+              .invoke('data', 'value')
+              .should('equal', filter)
+          })
+      })
+  })
+
+  it.only('testing filtering daterange', () => {
+    const filter = { start: '1990-01-01', end: '1993-01-01' }
+    const startDate = new Date(filter.start)
+    const endDate = new Date(filter.end)
+
+    cy.findByRole('filter-start', { name: 'birthDate' })
+      .type(filter.start)
+      .trigger('change')
+
+    cy.findByRole('filter-end', { name: 'birthDate' })
+      .type(filter.end)
+      .trigger('change')
+
+    cy.get('tbody')
+      .find('tr')
+      .each(row => {
+        cy.wrap(row)
+          .findByRole('cell', { name: 'birthDate' })
+          .invoke('data', 'value')
+          .then(dataVal => {
+            const cellDate = new Date(dataVal)
+            expect(cellDate).to.be.gte(startDate)
+            expect(cellDate).to.be.lte(endDate)
+          })
+      })
+  })
 })

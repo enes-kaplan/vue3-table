@@ -66,6 +66,14 @@ export default {
         isFilterable: true
       },
       {
+        name: 'employmentDate',
+        text: 'Employment Date',
+        dataType: 'date',
+        align: 'center',
+        isSortable: true,
+        isFilterable: true
+      },
+      {
         name: 'birthDate',
         text: 'Birth Date',
         dataType: 'daterange',
@@ -85,6 +93,7 @@ export default {
         id: 1,
         name: 'John',
         surname: 'Doe',
+        employmentDate: '2020-04-14',
         birthDate: '1992-01-01',
         isApproved: true
       },
@@ -92,6 +101,7 @@ export default {
         id: 2,
         name: 'Mary',
         surname: 'Sheep',
+        employmentDate: '2020-03-13',
         birthDate: '1994-07-11',
         isApproved: false
       },
@@ -99,6 +109,7 @@ export default {
         id: 3,
         name: 'Laurie',
         surname: 'Willif',
+        employmentDate: '2020-02-12',
         birthDate: '1993-05-05',
         isApproved: false
       },
@@ -106,6 +117,7 @@ export default {
         id: 4,
         name: 'John',
         surname: 'Doe',
+        employmentDate: '2020-04-14',
         birthDate: '1992-01-01',
         isApproved: true
       },
@@ -113,6 +125,7 @@ export default {
         id: 5,
         name: 'Mary',
         surname: 'Sheep',
+        employmentDate: '2020-03-13',
         birthDate: '1994-07-11',
         isApproved: false
       },
@@ -120,6 +133,7 @@ export default {
         id: 6,
         name: 'Laurie',
         surname: 'Willif',
+        employmentDate: '2020-02-12',
         birthDate: '1993-05-05',
         isApproved: false
       },
@@ -127,6 +141,7 @@ export default {
         id: 7,
         name: 'John',
         surname: 'Doe',
+        employmentDate: '2020-04-14',
         birthDate: '1992-01-01',
         isApproved: true
       },
@@ -134,6 +149,7 @@ export default {
         id: 8,
         name: 'Mary',
         surname: 'Sheep',
+        employmentDate: '2020-03-13',
         birthDate: '1994-07-11',
         isApproved: false
       },
@@ -141,6 +157,7 @@ export default {
         id: 9,
         name: 'Laurie',
         surname: 'Willif',
+        employmentDate: '2020-02-12',
         birthDate: '1993-05-05',
         isApproved: false
       },
@@ -148,6 +165,7 @@ export default {
         id: 10,
         name: 'John',
         surname: 'Doe',
+        employmentDate: '2020-04-14',
         birthDate: '1992-01-01',
         isApproved: true
       },
@@ -155,6 +173,7 @@ export default {
         id: 11,
         name: 'Mary',
         surname: 'Sheep',
+        employmentDate: '2020-03-13',
         birthDate: '1994-07-11',
         isApproved: false
       },
@@ -162,6 +181,7 @@ export default {
         id: 12,
         name: 'Laurie',
         surname: 'Willif',
+        employmentDate: '2020-02-12',
         birthDate: '1993-05-05',
         isApproved: false
       }
