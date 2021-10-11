@@ -11,9 +11,6 @@
         is-filterable
         striped
       >
-        <template #name="row">
-          <input v-model="row.data.name" type="text" class="input-text">
-        </template>
         <template #isApproved="row">
           <input type="checkbox" :checked="row.data.isApproved" disabled>
         </template>
