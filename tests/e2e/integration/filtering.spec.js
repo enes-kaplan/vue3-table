@@ -51,7 +51,6 @@ describe('Filtering test', () => {
               .should('equal', selectVal)
           })
       })
-
   })
 
   it('testing filtering boolean', () => {
@@ -96,7 +95,7 @@ describe('Filtering test', () => {
       })
   })
 
-  it.only('testing filtering daterange', () => {
+  it('testing filtering daterange', () => {
     const filter = { start: '1990-01-01', end: '1993-01-01' }
     const startDate = new Date(filter.start)
     const endDate = new Date(filter.end)
@@ -119,6 +118,33 @@ describe('Filtering test', () => {
             const cellDate = new Date(dataVal)
             expect(cellDate).to.be.gte(startDate)
             expect(cellDate).to.be.lte(endDate)
+          })
+      })
+  })
+})
+
+describe('Sorting test', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it.only('testing sorting name', () => {
+    cy.findByRole('sort', { name: 'name' })
+      .click()
+
+    let prevValue = null
+    cy.get('tbody')
+      .find('tr')
+      .each(row => {
+        cy.wrap(row)
+          .findByRole('cell', { name: 'name' })
+          .invoke('data', 'value')
+          .then(data => {
+            if (prevValue !== null) {
+              const isSortedCorrectly = prevValue.localeCompare(data) <= 0
+              expect(isSortedCorrectly).to.eq(true)
+            }
+            prevValue = data
           })
       })
   })
