@@ -1,16 +1,10 @@
 /// <reference types="cypress" />
 
-describe('Filtering test', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
+beforeEach(() => {
+  cy.visit('/')
+})
 
-  it('counting first page rows', () => {
-    cy.get('tbody')
-      .find('tr')
-      .should('have.length', 5)
-  })
-
+describe('Filtering tests', () => {
   it('testing filtering text', () => {
     const filterText = 'jo'
 
@@ -124,11 +118,7 @@ describe('Filtering test', () => {
 })
 
 describe('Sorting test', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
-
-  it.only('testing sorting name', () => {
+  it('testing sorting name', () => {
     cy.findByRole('sort', { name: 'name' })
       .click()
 
@@ -147,5 +137,17 @@ describe('Sorting test', () => {
             prevValue = data
           })
       })
+  })
+})
+
+describe('Pagination tests', () => {
+  it('counting first page rows', () => {
+    cy.get('tbody')
+      .find('tr')
+      .should('have.length', 5)
+  })
+
+  it('', () => {
+
   })
 })
