@@ -147,7 +147,17 @@ describe('Pagination tests', () => {
       .should('have.length', 5)
   })
 
-  it('', () => {
+  it('counting page count', () => {
+    cy.findAllByRole('page')
+      .should('have.length', 3)
+  })
 
+  it('counting last page rows', () => {
+    cy.findByRole('page', { name: '3' })
+      .click()
+
+    cy.get('tbody')
+      .find('tr')
+      .should('have.length', 2)
   })
 })
