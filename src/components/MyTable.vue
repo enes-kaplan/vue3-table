@@ -3,7 +3,13 @@
     <thead>
       <tr>
         <th v-for="col in visibleColumns" :key="col.name">
-          <div class="flex flex-row gap-2 items-center" :class="{ 'hover:text-blue-600 cursor-pointer': col.isSortable }" @click="toggleSorting(col)">
+          <div
+            :class="{ 'hover:text-blue-600 cursor-pointer': col.isSortable }"
+            :aria-label="col.name"
+            role="sort"
+            class="flex flex-row gap-2 items-center"
+            @click="toggleSorting(col)"
+          >
             {{ col.text }}
             <span v-if="col.isSortable">
               <icon-sort-ascending class="w-5 h-5" v-if="sorting.column === col.name && sorting.direction === 'asc'" />
@@ -29,6 +35,9 @@
           v-for="(col, j) in visibleColumns"
           :key="'row-' + j + '-' + col.name"
           :class="columnClasses(col)"
+          :data-value="row[col.name]"
+          :aria-label="col.name"
+          role="cell"
         >
           <slot :name="col.name" :data="row">
             {{ row[col.name] }}

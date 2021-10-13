@@ -5,6 +5,8 @@
         v-for="page in pagination.lastPage"
         :key="page"
         :class="{ 'bg-blue-500 text-white italic': pagination.currentPage.value === page, 'text-blue-500 hover:underline': pagination.currentPage.value !== page }"
+        :aria-label="page"
+        role="page"
         class="w-8 h-8 text-lg font-semibold focus:outline-none"
         @click="changePage(page)"
       >

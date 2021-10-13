@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row gap-2">
-    <input v-model="filterText" type="text" class="input-text">
+    <input v-model="filterText" :aria-label="column.name" role="filter" type="text" class="input-text" >
     <button v-if="filterText !== ''" class="focus:outline-none" @click="filterText = ''">
       <icon-cross class="w-6 h-6 text-gray-600" />
     </button>

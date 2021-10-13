@@ -18,7 +18,7 @@ export function applyFilter(columns, data, locale = 'en-US') {
         } else if (dataType === 'select' || dataType === 'boolean') {
           return cellValue === filterValue || filterValue === ''
         } else if (dataType === 'date') {
-          return cellValue === filterValue.date
+          return cellValue === filterValue.date || filterValue.date === null
         } else if (dataType === 'daterange') {
           if (filterValue.dateStart !== null && filterValue.dateEnd !== null) {
             return cellValue >= filterValue.dateStart && cellValue <= filterValue.dateEnd

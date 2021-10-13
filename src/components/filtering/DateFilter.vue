@@ -1,6 +1,6 @@
 <template>
   <div v-if="column.dataType === 'date'" class="flex flex-row gap-2">
-    <input v-model="date" type="date" class="input-text w-full" @change="emitInput">
+    <input v-model="date" :aria-label="column.name" role="filter" type="date" class="input-text w-full" @change="emitInput">
     <button v-if="date !== null" class="focus:outline-none" @click="date = null">
       <icon-cross class="w-6 h-6 text-gray-600" />
     </button>
@@ -9,14 +9,14 @@
     </button>
   </div>
   <div v-else class="flex flex-row gap-2">
-    <input v-model="dateStart" type="date" class="input-text w-full" @change="emitInput">
+    <input v-model="dateStart" :aria-label="column.name" role="filter-start" type="date" class="input-text w-full" @change="emitInput">
     <button v-if="dateStart !== null" class="focus:outline-none" @click="dateStart = null">
       <icon-cross class="w-6 h-6 text-gray-600" />
     </button>
     <button v-else class="cursor-default opacity-0">
       <icon-cross class="w-6 h-6 text-gray-600" />
     </button>
-    <input v-model="dateEnd" type="date" class="input-text w-full" @change="emitInput">
+    <input v-model="dateEnd" :aria-label="column.name" role="filter-end" type="date" class="input-text w-full" @change="emitInput">
     <button v-if="dateEnd !== null" class="focus:outline-none" @click="dateEnd = null">
       <icon-cross class="w-6 h-6 text-gray-600" />
     </button>
