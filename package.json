@@ -1,6 +1,6 @@
 {
   "name": "vue-my-table-3",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": false,
   "description": "Vue 3 datatable component practice",
   "author": "Enes Kaplan",
@@ -9,6 +9,8 @@
     "serve": "vite preview",
     "build": "vite build",
     "test:unit": "vue-cli-service test:unit",
+		"test:e2e": "cypress run --browser edge",
+		"test:cy": "cypress open",
     "lint": "eslint --ext .js --ext .vue . --fix"
   },
   "main": "./dist/vue-my-table-3.umd.js",
